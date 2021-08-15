@@ -1,6 +1,7 @@
 package br.com.zupacademy.carlivan.mercadolivre.controller.form;
 
 import br.com.zupacademy.carlivan.mercadolivre.model.Usuario;
+import br.com.zupacademy.carlivan.mercadolivre.validation.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ public class UsuarioForm {
 
     @NotBlank
     @Email
+    @UniqueValue(domainClass = Usuario.class, fieldName = "login")
     private String login;
     @NotBlank
     @Length(min = 6)
