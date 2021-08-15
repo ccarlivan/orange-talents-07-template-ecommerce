@@ -1,4 +1,4 @@
-package br.com.zupacademy.carlivan.mercado.livre;
+package br.com.zupacademy.carlivan.mercadolivre;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
