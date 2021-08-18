@@ -19,8 +19,10 @@ public class TokenService {
     @Value("${forum.jwt.secret}")
     private String secret;
 
+    Usuario logado;
+
     public String gerarToken(Authentication authentication) {
-        Usuario logado = (Usuario) authentication.getPrincipal();
+        logado = (Usuario) authentication.getPrincipal();
         Date hoje = new Date();
         Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 
@@ -46,5 +48,9 @@ public class TokenService {
     public Long getIdUsuario(String token) {
         Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
         return Long.parseLong(claims.getSubject());
+    }
+
+    public Usuario getLogado() {
+        return logado;
     }
 }

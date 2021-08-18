@@ -12,8 +12,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ExistIdValidator.class)
-public @interface ExistId {
+@Constraint(validatedBy = IfExistIdValidator.class)
+public @interface IfExistId {
 
     String message() default "Valor inválido";
 

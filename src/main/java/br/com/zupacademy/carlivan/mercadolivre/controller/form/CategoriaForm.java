@@ -1,18 +1,17 @@
 package br.com.zupacademy.carlivan.mercadolivre.controller.form;
 
 import br.com.zupacademy.carlivan.mercadolivre.model.Categoria;
-import br.com.zupacademy.carlivan.mercadolivre.validation.ExistId;
+import br.com.zupacademy.carlivan.mercadolivre.validation.IfExistId;
 import br.com.zupacademy.carlivan.mercadolivre.validation.UniqueValue;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
-import java.util.Optional;
 
 public class CategoriaForm {
     @NotBlank
     @UniqueValue(domainClass = Categoria.class, fieldName = "nome")
     private String nome;
-    @ExistId(domainClass = Categoria.class, fieldName = "id")
+    @IfExistId(domainClass = Categoria.class, fieldName = "id")
     private Long idCategoriaMae;
 
     public CategoriaForm(String nome) {

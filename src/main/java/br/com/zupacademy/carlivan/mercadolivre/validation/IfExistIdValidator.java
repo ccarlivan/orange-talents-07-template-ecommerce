@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class ExistIdValidator implements ConstraintValidator<ExistId, Object> {
+public class IfExistIdValidator implements ConstraintValidator<IfExistId, Object> {
 
     private String domainAttribute;
     private Class<?> klass;
@@ -17,7 +17,7 @@ public class ExistIdValidator implements ConstraintValidator<ExistId, Object> {
     EntityManager manager;
 
     @Override
-    public void initialize(ExistId constraintAnnotation) {
+    public void initialize(IfExistId constraintAnnotation) {
         domainAttribute = constraintAnnotation.fieldName();
 
         klass = constraintAnnotation.domainClass();
@@ -25,6 +25,10 @@ public class ExistIdValidator implements ConstraintValidator<ExistId, Object> {
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
+
+        if(value == null){
+            return true;
+        }
 
         Query query = manager.createQuery("select 1 from " + klass.getName()+ " where " + domainAttribute+"=:value");
         query.setParameter("value", value);

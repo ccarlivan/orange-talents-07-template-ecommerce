@@ -60,6 +60,14 @@ public class Usuario implements UserDetails {
     }
 
     @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(getId(), getLogin(), getSenha());
     }
