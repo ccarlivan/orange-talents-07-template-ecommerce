@@ -33,6 +33,8 @@ public class Produto {
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
     private Set<CaracteristicaProduto> caracteristicas=new HashSet<>();
     private LocalDateTime dataCadastro;
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<ImagemProduto> imagens = new HashSet<>();
 
     public Produto(String nome, int quantidade, String descricao, BigDecimal valor, Categoria categoria,
                    Usuario dono, @Size(min = 3) Collection<CaracteristicaForm> caracteristicas) {
@@ -50,6 +52,10 @@ public class Produto {
     }
 
     public Produto() {
+    }
+
+    public Usuario getDono() {
+        return dono;
     }
 
     @Override
@@ -75,6 +81,14 @@ public class Produto {
                 ", categoria=" + categoria +
                 ", dono=" + dono +
                 ", caracteristicas="+caracteristicas+
+                ", imagens="+imagens+
                 '}';
+    }
+
+    public void associaImagens(Set<String> links) {
+        Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
+                .collect(Collectors.toSet());
+
+        this.imagens.addAll(imagens);
     }
 }
