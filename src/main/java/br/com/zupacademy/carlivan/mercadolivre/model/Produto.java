@@ -71,17 +71,25 @@ public class Produto {
         return Objects.hash(nome);
     }
 
+//    @Override
+//    public String toString() {
+//        return "Produto{" +
+//                "nome='" + nome + '\'' +
+//                ", quantidade=" + quantidade +
+//                ", descricao='" + descricao + '\'' +
+//                ", valor=" + valor +
+//                ", categoria=" + categoria +
+//                ", dono=" + dono +
+//                ", caracteristicas="+caracteristicas+
+//                ", imagens="+imagens+
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", quantidade=" + quantidade +
-                ", descricao='" + descricao + '\'' +
-                ", valor=" + valor +
-                ", categoria=" + categoria +
-                ", dono=" + dono +
-                ", caracteristicas="+caracteristicas+
-                ", imagens="+imagens+
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 '}';
     }
 
