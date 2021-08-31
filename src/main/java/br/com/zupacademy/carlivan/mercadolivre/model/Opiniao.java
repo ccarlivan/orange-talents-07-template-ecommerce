@@ -2,6 +2,7 @@ package br.com.zupacademy.carlivan.mercadolivre.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 public class Opiniao {
@@ -55,5 +56,18 @@ public class Opiniao {
                 ", produto=" + produto +
                 ", usuario=" + usuario +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Opiniao)) return false;
+        Opiniao opiniao = (Opiniao) o;
+        return Objects.equals(getTitulo(), opiniao.getTitulo()) && Objects.equals(getProduto(), opiniao.getProduto()) && Objects.equals(getUsuario(), opiniao.getUsuario());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitulo(), getProduto(), getUsuario());
     }
 }

@@ -2,6 +2,8 @@ package br.com.zupacademy.carlivan.mercadolivre.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 @Entity
 public class Pergunta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,5 +59,18 @@ public class Pergunta {
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pergunta)) return false;
+        Pergunta pergunta = (Pergunta) o;
+        return Objects.equals(getTitulo(), pergunta.getTitulo()) && Objects.equals(getProduto(), pergunta.getProduto());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitulo(), getProduto());
     }
 }
