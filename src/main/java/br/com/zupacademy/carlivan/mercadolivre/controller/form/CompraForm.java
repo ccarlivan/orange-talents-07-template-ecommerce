@@ -6,6 +6,8 @@ import br.com.zupacademy.carlivan.mercadolivre.model.Usuario;
 import br.com.zupacademy.carlivan.mercadolivre.pagamento.Gateway;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
@@ -16,6 +18,7 @@ public class CompraForm {
     @Positive
     private int quantidade;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Gateway gateway;
 
     public CompraForm(Long idProduto, int quantidade, Gateway gateway) {
